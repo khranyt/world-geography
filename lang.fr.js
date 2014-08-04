@@ -184,4 +184,20 @@ var lang =
  		"tr" : "Turquie",
  		"vn" : "Vi\353t Nam",
  		"ye" : "Y\351men",
+ 		"au" : "Australie", // OCEANIE
+ 		"fj" : "Fidji",
+ 		"ki" : "Kiribati",
+ 		"mh" : "\316les Marshall",
+ 		"fm" : "Micron\351sie",
+ 		"nr" : "Nauru",
+ 		"nz" : "Nouvelle-Z\351lande",
+ 		"pw" : "Palaos",
+ 		"pg" : "Papouasie-Nouvelle-Guin\351e",
+ 		"sb" : "Salomon",
+ 		"ws" : "Samoa",
+ 		"to" : "Tonga",
+ 		"tv" : "Tuvalu",
+ 		"vu" : "Vanuatu",
+ 		"ck" : "\316les Cook",
+ 		"nu" : "Niue"
 };
