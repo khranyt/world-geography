@@ -27,15 +27,15 @@ body {
   text-shadow: 2px 2px 0 white;
 }
 
-#frm_container, #score {
+#frm_container, #score, #clear {
   font-size: 1.5em;
 }
 
-#name, #score {
+#name, #score, #clear {
   padding: 10px;
 }
 
-#name, #score, #frm_container {
+#name, #score, #frm_container, #clear {
   z-index: 1;
 }
 
@@ -57,4 +57,14 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
+}
+
+#clear {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#clear:hover {
+  cursor: pointer;
 }

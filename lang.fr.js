@@ -2,6 +2,7 @@ var lang =
 	{
 		"title" : "Connaissez-vous bien votre monde ?",
 		"question" : "Quel est le nom de ce pays ?",
+		"clear" : "Vider la carte",
 
 		"ca" : "Canada", // AMERICAS
 		"us" : "\311tats-Unis",
