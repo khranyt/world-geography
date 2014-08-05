@@ -23,7 +23,7 @@
 		fill:#ff8080;
 	}
 </style>
-<script  xlink:href="SVGPan.js"></script>
+<script xlink:href="SVGPan.js" type="text/javascript"></script>
 <g id="viewport">
 	<g id="nl" class="state">
 		<g id="gNLD">
