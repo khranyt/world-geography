@@ -68,14 +68,15 @@ window.onload = function() {
 			if (!is_known(this.id) && !clicked) {
 				form_div.style.display = "block";
 				input.focus();
-				this.className = "state_clicked";
+				this.setAttribute("class", "state_clicked");
 				clicked = true;
 				state_clicked = this.id;
 			}
 		}
 
 		if (is_known(states[i].id)) {
-			states[i].className = "state_known";
+
+			states[i].setAttribute("class", "state_known");
 		}
 	}
 
@@ -83,7 +84,7 @@ window.onload = function() {
 		form_div.style.display = "none";
 
 		if (validate(state_clicked, input.value)) {
-			svg_doc.getElementById(state_clicked).className = "state_known";
+			svg_doc.getElementById(state_clicked).setAttribute("class", "state_known");
 			known_states = known_states + state_clicked + ",";
 			++counter;
 			score.innerHTML = counter;
@@ -94,7 +95,7 @@ window.onload = function() {
 				name.innerHTML = lang[state_clicked];
 		}
 		else {
-			svg_doc.getElementById(state_clicked).className = "state";
+			svg_doc.getElementById(state_clicked).setAttribute("class", "state");
 		}
 
 		input.value = "";
@@ -109,7 +110,7 @@ window.onload = function() {
 		score.innerHTML = "0";
 		var states_toclear = svg_doc.getElementsByClassName("state_known");
 		for (var i = 0; i < states_toclear.length; ++i) {
-			states_toclear[i].className = "state";
+			states_toclear[i].setAttribute("class", "state");
 		}
 	}
 }
