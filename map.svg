@@ -8,6 +8,9 @@
 	.st0{fill:#ffffff;stroke:#000000;stroke-width:0.2;stroke-linejoin:bevel;}
 	.st1{fill:#ffffff;stroke:#000000;stroke-width:0.2;}
 
+	.state:hover path {
+		cursor:pointer;
+	}
 	.state:hover path, .state_known:hover path {
 		fill:#ff0000;
 	}

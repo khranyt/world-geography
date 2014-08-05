@@ -104,14 +104,14 @@ window.onload = function() {
 	}
 
 	clear.onclick = function() {
+		var states_toclear = known_states.split(',');
+		for (var i = 0; i < states_toclear.length - 1; ++i) {
+			svg_doc.getElementById(states_toclear[i]).setAttribute("class", "state");
+		}
+		score.innerHTML = "0";
 		known_states = ''; counter = 0;
 		localStorage.setItem('known_states', known_states);
 		localStorage.setItem('counter', counter);
-		score.innerHTML = "0";
-		var states_toclear = svg_doc.getElementsByClassName("state_known");
-		for (var i = 0; i < states_toclear.length; ++i) {
-			states_toclear[i].setAttribute("class", "state");
-		}
 	}
 }
 
