@@ -128,11 +128,12 @@ function is_known(id) {
 }
 
 function remove_accent(string) {
-	string = string.replace("\356", "i");
-	string = string.replace("\357", "i");
-	string = string.replace("\351", "e");
-	string = string.replace("\350", "e");
-	string = string.replace("\353", "e");
-	string = string.replace("\364", "o");
+	string = string.replace(/\356/g, "i");
+	string = string.replace(/\357/g, "i");
+	string = string.replace(/\351/g, "e");
+	string = string.replace(/\350/g, "e");
+	string = string.replace(/\353/g, "e");
+	string = string.replace(/\364/g, "o");
+	string = string.replace(/-/g, " ");
 	return string;
 }
