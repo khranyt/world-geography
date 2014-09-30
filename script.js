@@ -26,6 +26,7 @@ console.log("counter: " + counter);
 
 var clicked = false;
 var state_clicked, state_hovered, state_hovered_class, state_found;
+var last_input = '';
 
 window.onload = function() {
 
@@ -77,7 +78,11 @@ window.onload = function() {
 
 	var temp;
 	input.onkeyup = function() {
-		input.value = remove_accent(input.value.toLowerCase());
+
+		if (last_input.length < input.value.length)
+			input.value = remove_accent(input.value.toLowerCase());
+
+		last_input = input.value
 
 		if (input.value.length > 2) {
 			temp = lang[input.value];
@@ -93,7 +98,7 @@ window.onload = function() {
 					if (state_hovered != undefined) {
 						if (state_hovered != temp) {
 							state_hovered_class = svg_doc.getElementById(state_hovered).getAttribute("class");
-							if (state_hovered_class != "state_found")
+							if (state_hovered_class != "state_found" && state_hovered_class.slice(-4) != "temp")
 								svg_doc.getElementById(state_hovered).setAttribute("class", state_hovered_class + "_temp");
 						}
 						else
@@ -112,6 +117,7 @@ window.onload = function() {
 					state_found = temp;
 				}
 			}
+		
 		}
 	}
 
@@ -148,5 +154,6 @@ function remove_accent(string) {
 	string = string.replace(/\353/g, "e");
 	string = string.replace(/\364/g, "o");
 	string = string.replace(/-/g, " ");
+	string = string.replace(/'/g, " ");
 	return string;
 }
