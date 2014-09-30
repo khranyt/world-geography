@@ -8,18 +8,19 @@
 	.st0{fill:#ffffff;stroke:#000000;stroke-width:0.2;stroke-linejoin:bevel;}
 	.st1{fill:#ffffff;stroke:#000000;stroke-width:0.2;}
 
-	.state:hover path {
-		cursor:pointer;
-	}
-	.state:hover path, .state_known:hover path {
-		fill:#ff0000;
-	}
-
-	.state_clicked path {
+	.state_found path, .state:hover path, .state_known:hover path {
 		fill:#ff0000;
 	}
 
 	.state_known path {
+		fill:#ff8080;
+	}
+
+	.state_temp path {
+		fill:#ffffff;
+	}
+
+	.state_known_temp path {
 		fill:#ff8080;
 	}
 </style>

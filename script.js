@@ -9,6 +9,7 @@ script.type = "application/javascript";
 script.src = "lang." + language + ".js";
 document.head.appendChild(script);
 
+
 //LOCAL STORAGE
 
 var known_states = localStorage.getItem('known_states');
@@ -26,7 +27,7 @@ console.log("counter: " + counter);
 // GEO 
 
 var clicked = false;
-var state_clicked; var state_hovered = '';
+var state_clicked, state_hovered, state_hovered_class, state_found;
 
 window.onload = function() {
 
@@ -38,21 +39,22 @@ window.onload = function() {
 
 	var name = document.getElementById("name");
 	var question = document.getElementById("question");
-	var form_div = document.getElementById("frm_container");
 	var input = document.getElementById("input");
-	var form = document.getElementById("form");
 	var score = document.getElementById("score_n");
 	var clear = document.getElementById("clear");
 
 	score.innerHTML = counter;
 	clear.innerHTML = lang["clear"];
-	question.innerHTML = lang["question"];
+	input.focus();
 
 	for (var i = 0; i < states.length; ++i) {
 
 		states[i].onmouseover = function() {
 			state_hovered = this.id;
-
+			if (state_found != undefined) {
+				svg_doc.getElementById(state_found).setAttribute("class", "state_known");
+				state_found = null;
+			}
 			if (is_known(this.id))
 				name.innerHTML = lang[this.id];
 			else
@@ -60,49 +62,61 @@ window.onload = function() {
 		}
 
 		states[i].onmouseout = function() {
-			state_hovered = '';
+			if (state_hovered != undefined && state_hovered_class != undefined) {
+				svg_doc.getElementById(state_hovered).setAttribute("class", state_hovered_class);
+			}
+			state_hovered = null; state_hovered_class = null;
 			name.innerHTML = "";
 		}
+	}
 
-		states[i].onclick  = function() {
-			if (!is_known(this.id) && !clicked) {
-				form_div.style.display = "block";
-				input.focus();
-				this.setAttribute("class", "state_clicked");
-				clicked = true;
-				state_clicked = this.id;
+	// remplissage des pays trouves
+	var states_tofill = known_states.split(',');
+	for (var i = 0; i < states_tofill.length - 1; ++i) {
+		svg_doc.getElementById(states_tofill[i]).setAttribute("class", "state_known");
+	}
+
+	var temp;
+	input.onkeyup = function() {
+		input.value = remove_accent(input.value.toLowerCase());
+
+		if (input.value.length > 2) {
+			temp = lang[input.value];
+			if (temp != undefined) {
+				if (known_states.indexOf(temp) == -1) {
+
+					if (state_found != undefined)
+						svg_doc.getElementById(state_found).setAttribute("class", "state_known");
+
+					console.log(input.value + ";" + temp);
+					svg_doc.getElementById(temp).setAttribute("class", "state_found");
+
+					if (state_hovered != undefined) {
+						if (state_hovered != temp) {
+							state_hovered_class = svg_doc.getElementById(state_hovered).getAttribute("class");
+							if (state_hovered_class != "state_found")
+								svg_doc.getElementById(state_hovered).setAttribute("class", state_hovered_class + "_temp");
+						}
+						else
+							state_hovered_class = "state_known";
+
+					}
+
+					known_states = known_states + temp + ",";
+					++counter;
+					score.innerHTML = counter;
+					localStorage.setItem('known_states', known_states);
+					localStorage.setItem('counter', counter);
+
+					input.value = "";
+					name.innerHTML = lang[temp];
+					state_found = temp;
+				}
 			}
 		}
-
-		if (is_known(states[i].id)) {
-
-			states[i].setAttribute("class", "state_known");
-		}
 	}
 
-	form.onsubmit = function() {
-		form_div.style.display = "none";
-
-		if (validate(state_clicked, input.value)) {
-			svg_doc.getElementById(state_clicked).setAttribute("class", "state_known");
-			known_states = known_states + state_clicked + ",";
-			++counter;
-			score.innerHTML = counter;
-			localStorage.setItem('known_states', known_states);
-			localStorage.setItem('counter', counter);
-
-			if (state_clicked == state_hovered)
-				name.innerHTML = lang[state_clicked];
-		}
-		else {
-			svg_doc.getElementById(state_clicked).setAttribute("class", "state");
-		}
-
-		input.value = "";
-		clicked = false;
-		return false;
-	}
-
+	// vider la carte
 	clear.onclick = function() {
 		var states_toclear = known_states.split(',');
 		for (var i = 0; i < states_toclear.length - 1; ++i) {
@@ -112,14 +126,14 @@ window.onload = function() {
 		known_states = ''; counter = 0;
 		localStorage.setItem('known_states', known_states);
 		localStorage.setItem('counter', counter);
+		input.focus();
 	}
 }
 
-function validate(id, value) {
-	id = remove_accent(lang[id].toLowerCase());
+function validate(value) {
 	value = remove_accent(value.toLowerCase());
-	valid = value.indexOf(id) > -1 ? true : false;
-	console.log("id:" + id + "; value:" + value + "; " + valid);
+	valid = false;
+	//console.log("id:" + id + "; value:" + value + "; " + valid);
 	return valid;
 }
 

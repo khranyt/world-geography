@@ -35,7 +35,7 @@ body {
   padding: 10px;
 }
 
-#name, #score, #frm_container, #clear {
+#name, #score, #form, #clear {
   z-index: 1;
 }
 
@@ -67,4 +67,14 @@ body {
 
 #clear:hover {
   cursor: pointer;
+}
+
+#form {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left:50%;
+  width: 400px;
+  height: 50px;
+  margin-left: -200px; 
 }
