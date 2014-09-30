@@ -43,6 +43,7 @@ window.onload = function() {
 
 	score.innerHTML = counter;
 	clear.innerHTML = lang["clear"];
+	question.innerHTML = lang["question"];
 	input.focus();
 
 	for (var i = 0; i < states.length; ++i) {

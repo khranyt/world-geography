@@ -1,7 +1,7 @@
 var lang = 
 	{
 		"title" : "Quizz - Pays du monde",
-		"question" : "Quel est le nom de ce pays ?",
+		"question" : "Entrez le nom d'un pays :",
 		"clear" : "Vider la carte",
 
 		// AMERICAS
@@ -61,6 +61,7 @@ var lang =
  		"irlande" : "ie",
  		"islande" : "is",
  		"italie" : "it",
+ 		"kosovo" : "xk",
  		"lettonie" : "lv",
  		"liechtenstein" : "li",
  		"lituanie" : "lt",
@@ -263,6 +264,7 @@ var lang =
  		"ie" : "Irlande",
  		"is" : "Islande",
  		"it" : "Italie",
+ 		"xk" : "Kosovo",
  		"lv" : "Lettonie",
  		"li" : "Liechtenstein",
  		"lt" : "Lituanie",
