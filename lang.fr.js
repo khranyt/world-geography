@@ -1,6 +1,6 @@
 var lang = 
 	{
-		"title" : "Connaissez-vous bien votre monde ?",
+		"title" : "Quizz - Pays du monde",
 		"question" : "Quel est le nom de ce pays ?",
 		"clear" : "Vider la carte",
 

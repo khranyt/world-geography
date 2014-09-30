@@ -1,14 +1,13 @@
 //LANGUAGE
 
-language = (navigator.language || navigator.userLanguage).split("-")[0];	
-if (language != "fr" && language != "en")
-	language = "en";
+//language = (navigator.language || navigator.userLanguage).split("-")[0];	
+//if (language != "fr" && language != "en")
+	language = "fr";
 
 var script = document.createElement("script");
 script.type = "application/javascript";
 script.src = "lang." + language + ".js";
 document.head.appendChild(script);
-
 
 //LOCAL STORAGE
 
@@ -17,7 +16,6 @@ var counter = localStorage.getItem('counter');
 
 if (known_states == undefined)
 	known_states = '';
-
 if (counter == undefined)
 	counter = 0;
 
